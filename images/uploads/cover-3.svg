@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#e9e7df"/>
+  <g stroke="#111111" stroke-width="3" fill="none">
+    <path d="M0 450 Q 150 350 300 450 T 600 450 T 900 450 T 1200 450"/>
+    <path d="M0 520 Q 150 420 300 520 T 600 520 T 900 520 T 1200 520"/>
+    <path d="M0 590 Q 150 490 300 590 T 600 590 T 900 590 T 1200 590"/>
+  </g>
+  <circle cx="300" cy="450" r="16" fill="#778652"/>
+  <circle cx="600" cy="520" r="16" fill="#778652"/>
+  <circle cx="900" cy="590" r="16" fill="#778652"/>
+  <rect x="120" y="120" width="360" height="180" fill="#111111"/>
+  <text x="150" y="230" font-family="Helvetica, Arial, sans-serif" font-size="56" font-weight="700" letter-spacing="-2" fill="#f2f1ec">SOUND</text>
+  <text x="150" y="275" font-family="Helvetica, Arial, sans-serif" font-size="56" font-weight="700" letter-spacing="-2" fill="#778652">ARCHIVE</text>
+  <text x="120" y="800" font-family="Helvetica, Arial, sans-serif" font-size="24" letter-spacing="7" fill="#111111">2024 — INTERACTION</text>
+</svg>

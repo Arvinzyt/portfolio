@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1200" viewBox="0 0 960 1200">
+  <rect width="960" height="1200" fill="#f2f1ec"/>
+  <rect x="120" y="120" width="720" height="960" fill="none" stroke="#111111" stroke-width="3"/>
+  <circle cx="480" cy="520" r="190" fill="#778652"/>
+  <rect x="120" y="940" width="720" height="140" fill="#111111"/>
+  <text x="480" y="1030" font-family="Helvetica, Arial, sans-serif" font-size="40" letter-spacing="10" fill="#f2f1ec" text-anchor="middle">BAIZHOU STUDIO</text>
+</svg>

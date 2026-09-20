@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#f2f1ec"/>
+  <circle cx="880" cy="300" r="330" fill="#778652"/>
+  <rect x="0" y="620" width="1200" height="280" fill="#111111"/>
+  <rect x="120" y="180" width="14" height="440" fill="#111111"/>
+  <text x="180" y="760" font-family="Helvetica, Arial, sans-serif" font-size="88" font-weight="700" letter-spacing="-3" fill="#f2f1ec">MOUNTAIN STAY</text>
+  <text x="124" y="140" font-family="Helvetica, Arial, sans-serif" font-size="26" letter-spacing="8" fill="#111111">2025 — BRAND &amp; WEB</text>
+</svg>

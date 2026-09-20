@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#111111"/>
+  <rect x="150" y="150" width="420" height="600" fill="#778652"/>
+  <circle cx="780" cy="450" r="210" fill="none" stroke="#f2f1ec" stroke-width="3"/>
+  <circle cx="780" cy="450" r="120" fill="#f2f1ec"/>
+  <text x="150" y="820" font-family="Helvetica, Arial, sans-serif" font-size="64" font-weight="700" letter-spacing="-2" fill="#f2f1ec">COFFEE SUBSCRIPTION</text>
+  <text x="620" y="180" font-family="Helvetica, Arial, sans-serif" font-size="24" letter-spacing="7" fill="#a0a0a0">2024 — PRODUCT</text>
+</svg>
