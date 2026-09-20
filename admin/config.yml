@@ -1,0 +1,117 @@
+# ============================================================
+# Decap CMS 配置
+# ============================================================
+
+backend:
+  name: github
+  repo: Arvinzyt/portfolio
+  branch: main
+  # 在线编辑需要 OAuth 桥（见 README 第三步），本地编辑无需配置
+  # base_url: https://你的-oauth-桥地址
+
+local_backend: true                 # 本地运行 npx decap-server 后可直接编辑
+
+media_folder: "images/uploads"      # 图片上传目录
+public_folder: "images/uploads"     # 写入内容的图片路径（相对路径，兼容子路径部署）
+
+collections:
+  # ---------- 站点内容 ----------
+  - name: "settings"
+    label: "网站内容"
+    files:
+      - name: "site"
+        label: "站点与文案"
+        file: "content/site.yml"
+        fields:
+          - label: "SEO"
+            name: "meta"
+            widget: "object"
+            fields:
+              - { label: "网页标题", name: "title", widget: "string" }
+              - { label: "网页描述", name: "description", widget: "text" }
+          - { label: "名称（中文）", name: "brand", widget: "string" }
+          - { label: "名称（英文，用于页脚大字）", name: "brand_sub", widget: "string" }
+          - label: "导航菜单"
+            name: "nav"
+            widget: "list"
+            fields:
+              - { label: "名称", name: "label", widget: "string" }
+              - { label: "链接", name: "href", widget: "string" }
+          - label: "章节标题"
+            name: "sections"
+            widget: "object"
+            fields:
+              - { label: "关于", name: "about", widget: "string" }
+              - { label: "项目", name: "projects", widget: "string" }
+              - { label: "能力", name: "services", widget: "string" }
+              - { label: "联系", name: "contact", widget: "string" }
+          - label: "首屏 Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - label: "大标题（每行一条）"
+                name: "title_lines"
+                widget: "list"
+                fields:
+                  - { label: "文字", name: "text", widget: "string" }
+                  - { label: "用点缀色（橄榄绿）显示", name: "accent", widget: "boolean", default: false }
+              - { label: "简介", name: "intro", widget: "text" }
+              - label: "信息栏"
+                name: "meta"
+                widget: "list"
+                fields:
+                  - { label: "标签", name: "label", widget: "string" }
+                  - { label: "内容", name: "value", widget: "string" }
+          - label: "关于"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "标题", name: "title", widget: "string" }
+              - label: "段落"
+                name: "paragraphs"
+                widget: "list"
+                field: { label: "段落内容", name: "text", widget: "text" }
+              - { label: "配图", name: "portrait", widget: "image", required: false }
+              - { label: "配图说明", name: "portrait_caption", widget: "string", required: false }
+          - label: "能力 / 服务"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "名称", name: "name", widget: "string" }
+              - { label: "描述", name: "desc", widget: "text" }
+          - label: "联系"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "标题", name: "heading", widget: "string" }
+              - { label: "邮箱", name: "email", widget: "string" }
+              - label: "社交链接"
+                name: "socials"
+                widget: "list"
+                fields:
+                  - { label: "名称", name: "label", widget: "string" }
+                  - { label: "链接", name: "url", widget: "string" }
+          - { label: "页脚说明", name: "footer_note", widget: "string" }
+
+  # ---------- 项目列表 ----------
+  - name: "projects"
+    label: "项目"
+    files:
+      - name: "projects"
+        label: "项目列表"
+        file: "content/projects.yml"
+        fields:
+          - label: "项目（可拖拽排序）"
+            name: "projects"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.year}}"
+            fields:
+              - { label: "项目名称", name: "title", widget: "string" }
+              - { label: "年份", name: "year", widget: "string" }
+              - label: "标签"
+                name: "tags"
+                widget: "list"
+                field: { label: "标签", name: "tag", widget: "string" }
+              - { label: "简介", name: "summary", widget: "text", required: false }
+              - { label: "封面图", name: "image", widget: "image", required: false }
+              - { label: "外部链接（留空则不跳转）", name: "link", widget: "string", required: false }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>内容管理后台</title>
+</head>
+<body>
+  <!-- Decap CMS 可视化编辑后台 -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+  <script>
+    // 右侧实时预览（简化版）：项目列表
+    try {
+      const h = React.createElement;
+      const style = { fontFamily: "Inter, 'Noto Sans SC', sans-serif", padding: "24px", color: "#111" };
+      const card = {
+        borderTop: "1px solid #e8e8e4",
+        padding: "18px 0",
+        display: "flex",
+        gap: "18px",
+        alignItems: "flex-start",
+      };
+      CMS.registerPreviewTemplate("projects", ({ entry }) => {
+        const items = entry.getIn(["data", "projects"]);
+        if (!items) return null;
+        return h("div", { style },
+          items.map((p, i) =>
+            h("div", { key: i, style: card },
+              p.get("image")
+                ? h("img", { src: p.get("image"), style: { width: 120, height: 90, objectFit: "cover" } })
+                : null,
+              h("div", null,
+                h("div", { style: { fontSize: 20, fontWeight: 600, letterSpacing: "-0.02em" } }, p.get("title")),
+                h("div", { style: { fontSize: 12, color: "#778652", fontFamily: "monospace", margin: "4px 0" } },
+                  [p.get("year"), (p.get("tags") || []).join(" · ")].filter(Boolean).join(" — ")),
+                h("div", { style: { fontSize: 13, color: "#555", maxWidth: 420 } }, p.get("summary"))
+              )
+            )
+          )
+        );
+      });
+    } catch (e) { console.warn("预览模板未加载", e); }
+  </script>
+</body>
+</html>
