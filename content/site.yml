@@ -1,0 +1,74 @@
+# ============================================================
+# 站点内容与首页文案 —— 可直接修改，或在 /admin 后台可视化编辑
+# ============================================================
+
+meta:
+  title: "白昼工作室 — 设计与开发作品集"
+  description: "白昼工作室：专注于品牌、网页与交互体验的设计与开发。"
+
+brand: "白昼工作室"
+brand_sub: "BAIZHOU STUDIO"
+
+nav:
+  - label: "关于"
+    href: "#about"
+  - label: "项目"
+    href: "#projects"
+  - label: "能力"
+    href: "#services"
+  - label: "联系"
+    href: "#contact"
+
+sections:
+  about: "关于 ABOUT"
+  projects: "精选项目 SELECTED WORK"
+  services: "能力 SERVICES"
+  contact: "联系 CONTACT"
+
+hero:
+  title_lines:
+    - text: "设计与开发"
+      accent: false
+    - text: "值得被记住的"
+      accent: true
+    - text: "数字作品"
+      accent: false
+  intro: "我们是一支小型设计与开发团队，为品牌、创作者与初创团队打造克制而有力的网站与数字体验。"
+  meta:
+    - label: "地点"
+      value: "杭州 / 远程"
+    - label: "领域"
+      value: "品牌 · 网页 · 交互"
+    - label: "状态"
+      value: "接受新项目委托"
+
+about:
+  title: "相信少即是多，用留白与秩序让内容自己说话。"
+  paragraphs:
+    - "白昼工作室成立于 2021 年，成员来自设计与工程背景。我们不追逐潮流样式，而是从内容本身出发，为每个项目找到最合适的表达方式。"
+    - "过去几年里，我们服务过独立品牌、文化机构与科技公司，作品涵盖品牌官网、产品落地页、线上展览与交互装置。"
+  portrait: "images/uploads/portrait.svg"
+  portrait_caption: "工作室日常，2025"
+
+services:
+  - name: "品牌与视觉"
+    desc: "标志、视觉系统与品牌指南，从概念到落地的完整视觉语言构建。"
+  - name: "网站设计与开发"
+    desc: "从策划、设计到代码实现的一站式网站建设，注重性能与细节动效。"
+  - name: "交互体验"
+    desc: "以叙事为核心的交互设计，让浏览过程本身成为一种体验。"
+  - name: "长期维护"
+    desc: "上线后的内容更新、性能优化与持续迭代支持。"
+
+contact:
+  heading: "有想法？聊聊。"
+  email: "hello@example.com"
+  socials:
+    - label: "GitHub"
+      url: "https://github.com"
+    - label: "Behance"
+      url: "https://behance.net"
+    - label: "微信公众号"
+      url: "#"
+
+footer_note: "© 2025 白昼工作室 — 设计与开发"
