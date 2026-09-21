@@ -6,41 +6,90 @@
   <title>内容管理后台</title>
 </head>
 <body>
-  <!-- Decap CMS 可视化编辑后台 -->
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+  <div id="boot-status" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:14px;color:#555;">
+    正在加载内容管理后台……
+  </div>
+
+  <!-- 优先使用 jsdelivr（国内可达性好），失败后自动回退 unpkg -->
   <script>
-    // 右侧实时预览（简化版）：项目列表
-    try {
-      const h = React.createElement;
-      const style = { fontFamily: "Inter, 'Noto Sans SC', sans-serif", padding: "24px", color: "#111" };
-      const card = {
-        borderTop: "1px solid #e8e8e4",
-        padding: "18px 0",
-        display: "flex",
-        gap: "18px",
-        alignItems: "flex-start",
-      };
-      CMS.registerPreviewTemplate("projects", ({ entry }) => {
-        const items = entry.getIn(["data", "projects"]);
-        if (!items) return null;
-        return h("div", { style },
-          items.map((p, i) =>
-            h("div", { key: i, style: card },
-              p.get("image")
-                ? h("img", { src: p.get("image"), style: { width: 120, height: 90, objectFit: "cover" } })
-                : null,
-              h("div", null,
-                h("div", { style: { fontSize: 20, fontWeight: 600, letterSpacing: "-0.02em" } }, p.get("title")),
-                h("div", { style: { fontSize: 12, color: "#778652", fontFamily: "monospace", margin: "4px 0" } },
-                  [p.get("year"), (p.get("tags") || []).join(" · ")].filter(Boolean).join(" — ")),
-                h("div", { style: { fontSize: 13, color: "#555", maxWidth: 420 } }, p.get("summary"))
+    (function () {
+      const status = document.getElementById("boot-status");
+      const CDNS = [
+        {
+          react: "https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js",
+          cms: "https://cdn.jsdelivr.net/npm/decap-cms@3.8.3/dist/decap-cms.js",
+        },
+        {
+          react: "https://unpkg.com/react@18.3.1/umd/react.production.min.js",
+          cms: "https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js",
+        },
+      ];
+      let idx = 0;
+
+      function loadScript(src) {
+        return new Promise((resolve, reject) => {
+          const s = document.createElement("script");
+          s.src = src;
+          s.onload = resolve;
+          s.onerror = reject;
+          document.body.appendChild(s);
+        });
+      }
+
+      async function boot() {
+        while (idx < CDNS.length) {
+          const cdn = CDNS[idx++];
+          try {
+            if (!window.React) await loadScript(cdn.react);
+            if (!window.CMS) await loadScript(cdn.cms);
+            break;
+          } catch (e) {
+            if (idx >= CDNS.length) {
+              status.innerHTML = "后台脚本加载失败。<br>请检查网络后刷新；或按 README 使用本地方式编辑（npx decap-server）。";
+              return;
+            }
+          }
+        }
+        status.remove();
+        registerPreviews();
+      }
+
+      function registerPreviews() {
+        // 右侧实时预览（简化版）：项目列表
+        try {
+          const h = React.createElement;
+          const style = { fontFamily: "Inter, 'Noto Sans SC', sans-serif", padding: "24px", color: "#111" };
+          const card = {
+            borderTop: "1px solid #e8e8e4",
+            padding: "18px 0",
+            display: "flex",
+            gap: "18px",
+            alignItems: "flex-start",
+          };
+          CMS.registerPreviewTemplate("projects", ({ entry }) => {
+            const items = entry.getIn(["data", "projects"]);
+            if (!items) return null;
+            return h("div", { style },
+              items.map((p, i) =>
+                h("div", { key: i, style: card },
+                  p.get("image")
+                    ? h("img", { src: p.get("image"), style: { width: 120, height: 90, objectFit: "cover" } })
+                    : null,
+                  h("div", null,
+                    h("div", { style: { fontSize: 20, fontWeight: 600, letterSpacing: "-0.02em" } }, p.get("title")),
+                    h("div", { style: { fontSize: 12, color: "#778652", fontFamily: "monospace", margin: "4px 0" } },
+                      [p.get("year"), (p.get("tags") || []).join(" · ")].filter(Boolean).join(" — ")),
+                    h("div", { style: { fontSize: 13, color: "#555", maxWidth: 420 } }, p.get("summary"))
+                  )
+                )
               )
-            )
-          )
-        );
-      });
-    } catch (e) { console.warn("预览模板未加载", e); }
+            );
+          });
+        } catch (e) { console.warn("预览模板未加载", e); }
+      }
+
+      boot();
+    })();
   </script>
 </body>
 </html>
